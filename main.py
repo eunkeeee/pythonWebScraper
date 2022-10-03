@@ -8,4 +8,10 @@ if response.status_code!=200:
     print("Can't request website")
 else:
     soup = BeautifulSoup(response.text, "html.parser")
-    print(soup.find_all('section', class_="jobs"))
+    jobs=soup.find_all('section', class_="jobs")
+    for job_secction in jobs:
+        job_posts=job_secction.find_all('li')
+        job_posts.pop(-1)
+        for post in job_posts:
+            print(post)
+            print("////////////////////")
